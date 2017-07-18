@@ -1,0 +1,23 @@
+{
+  "name": "index_kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha *.spec.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webmasters/dms.git"
+  },
+  "author": "Marco Emrich",
+  "license": "MIT/BSD",
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "prettier": "^1.5.2",
+    "unexpected": "^10.32.1"
+  },
+  "dependencies": {
+    "ramda": "^0.24.1"
+  }
+}
