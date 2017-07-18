@@ -14,7 +14,10 @@ const runExpects = exampleRefs => {
 }
 
 describe("linkTextFor", function () {
-  it("should return the correct link texts the page and a space", function () {
+  it("should return the correct link texts as page padded right by space", function () {
+    // first pass: linkTextFor("#index_oop_1", "26") -> doesn't matter
+    // 2nd+ pass:  linkTextFor("#index_oop_1", "26") -> "26 "
+
     // oop 26 27 28 29
     let exampleRefs = [
       { href: "#index_oop_1", pageNum: "26", result: "26 " },
@@ -40,7 +43,7 @@ describe("linkTextFor", function () {
     runExpects(exampleRefs);
   });
 
-  xit("should worj with two terms", function () {
+  xit("should work with two terms", function () {
     // fp 11 12
     // orm 12 14
     var exampleRefs = [
@@ -53,6 +56,22 @@ describe("linkTextFor", function () {
 
     runFirstPass(exampleRefs)
     runExpects(exampleRefs);
+  });
+
+  xit("should provide consistent results on a third pass", function () {
+    // fp 11 12
+    // orm 12 14
+    var exampleRefs = [
+      { href: "#index_fp_1", pageNum: "11", result: "11 " },
+      { href: "#index_fp_2", pageNum: "12", result: "12 " },
+
+      { href: "#index_orm_1", pageNum: "12", result: "12 " },
+      { href: "#index_orm_2", pageNum: "14", result: "14 " },
+    ];
+
+    runFirstPass(exampleRefs)
+    runExpects(exampleRefs); //2nd pass
+    runExpects(exampleRefs); //3rd pass
   });
 
   xit("should return the correct link text for several intervined passes", function () {
