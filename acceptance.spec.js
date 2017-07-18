@@ -19,7 +19,7 @@ describe("linkTextFor", function () {
     // 2nd+ pass:  linkTextFor("#index_oop_1", "26") -> "26 "
 
     // oop 26 27 28 29
-    let exampleRefs = [
+    const exampleRefs = [
       { href: "#index_oop_1", pageNum: "26", result: "26 " },
       { href: "#index_oop_2", pageNum: "27", result: "27 " },
       { href: "#index_oop_3", pageNum: "28", result: "28 " },
@@ -32,7 +32,7 @@ describe("linkTextFor", function () {
 
   xit("should not repeat page numbers", function () {
     // oop 26 27 29
-    let exampleRefs = [
+    const exampleRefs = [
       { href: "#index_oop_1", pageNum: "26", result: "26 " },
       { href: "#index_oop_2", pageNum: "27", result: "27 " },
       { href: "#index_oop_3", pageNum: "27", result: "" },
@@ -46,7 +46,7 @@ describe("linkTextFor", function () {
   xit("should work with two terms", function () {
     // fp 11 12
     // orm 12 14
-    var exampleRefs = [
+    const exampleRefs = [
       { href: "#index_fp_1", pageNum: "11", result: "11 " },
       { href: "#index_fp_2", pageNum: "12", result: "12 " },
 
@@ -61,7 +61,7 @@ describe("linkTextFor", function () {
   xit("should provide consistent results on a third pass", function () {
     // fp 11 12
     // orm 12 14
-    var exampleRefs = [
+    const exampleRefs = [
       { href: "#index_fp_1", pageNum: "11", result: "11 " },
       { href: "#index_fp_2", pageNum: "12", result: "12 " },
 
@@ -78,7 +78,7 @@ describe("linkTextFor", function () {
     // foo 87-89
     // return a page range in the form <lowPage>-<highPage> 
     // for a several page references that have no page gaps between them 
-    var exampleRefs = [
+    const exampleRefs = [
       { href: "#index_foo_1", pageNum: "87", result: "87-89 " },
       { href: "#index_foo_2", pageNum: "88", result: "" },
       { href: "#index_foo_3", pageNum: "89", result: "" },
@@ -90,7 +90,7 @@ describe("linkTextFor", function () {
 
   xit("should combine page ranges with other results", () => {
     // foo 83 87-89 99
-    var exampleRefs = [
+    const exampleRefs = [
       { href: "#index_foo_1", pageNum: "83", result: "83 " },
       { href: "#index_foo_2", pageNum: "87", result: "87-89 " },
       { href: "#index_foo_3", pageNum: "88", result: "" },

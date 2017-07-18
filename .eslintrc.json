@@ -1,0 +1,19 @@
+{
+    "plugins": [
+        "immutable"
+    ],
+    "rules": {
+        "immutable/no-let": "error",
+        "immutable/no-this": "error",
+        "immutable/no-mutation": "error",
+        "no-var": "error",
+        "no-undef": "error",
+        "no-param-reassign": "error"
+    },
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true,
+        "commonjs": true
+    }
+}

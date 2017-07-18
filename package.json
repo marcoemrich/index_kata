@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha *.spec.js --watch"
+    "test": "./node_modules/.bin/mocha *.spec.js --watch",
+    "lint": "./node_modules/.bin/eslint *.js"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,10 @@
   "author": "Marco Emrich",
   "license": "MIT/BSD",
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-import": "^2.7.0",
     "mocha": "^3.4.2",
     "prettier": "^1.5.2",
     "unexpected": "^10.32.1"
