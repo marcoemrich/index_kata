@@ -74,24 +74,10 @@ describe("linkTextFor", function () {
     runExpects(exampleRefs); //3rd pass
   });
 
-  xit("should return the correct link text for several intervined passes", function () {
-    var exampleRefs = [
-      // operator 50 54 82
-      { href: "#index_operator_1", pageNum: "50", result: "50 " },
-      { href: "#index_operator_2", pageNum: "50", result: "" },
-      { href: "#index_operator_3", pageNum: "54", result: "54 " },
-
-      { href: "#index_operator_2", pageNum: "50", result: "" },
-      { href: "#index_operator_3", pageNum: "54", result: "54 " },
-      { href: "#index_operator_4", pageNum: "82", result: "82 " }
-    ];
-
-    runFirstPass(exampleRefs)
-    runExpects(exampleRefs);
-  });
-
   xit("should use page ranges", () => {
     // foo 87-89
+    // return a page range in the form <lowPage>-<highPage> 
+    // for a several page references that have no page gaps between them 
     var exampleRefs = [
       { href: "#index_foo_1", pageNum: "87", result: "87-89 " },
       { href: "#index_foo_2", pageNum: "88", result: "" },
