@@ -1,5 +1,9 @@
 # Index Kata
 
+## About
+
+State is the devil. All programmers know it. However, getting rid of state is hard. This kata is designed to have various needs for keeping state. Can you get rid of it?
+
 ## Description
 Imaging to write the part of a service that generates book indexes. There is a contract, that you function *linkTextFor* gets called everytime there is a reference found to a specific word. Let's say you want to index the term *oop*. Your function will get called for every place this word is found in the text. You get two arguments.
 
@@ -32,9 +36,12 @@ See acceptance.spec.js
  3. use an immutable library
 * minimize side effects
 * minimize scope (localize state!)
-* contain state, ie. use a pure core (pure functions only)
+* contain state, ie. keep the core pure(use pure functions only)
+* use state wrapping, ie. world-state as an in-param and an additional return value
+* maybe use a Monad, or an Observable, or ..
 * other ideas?
 
 ## Other considerations
 
 * use proper data structures (e.g. Map, Set instead of {}, [])
+* assume the inputs as valid, error handling is not part of the kata
