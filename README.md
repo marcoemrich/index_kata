@@ -41,6 +41,16 @@ See acceptance.spec.js
 * maybe use a Monad, or an Observable, or ..
 * other ideas?
 
+## Libs
+
+There are libs you can try out:
+
+* Immuteable http://facebook.github.io/immutable-js/
+  Provides immuteable data types
+  
+* Ramda http://ramdajs.com/
+  A functional library which features non-mutating, side effect free functions
+
 ## Other considerations
 
 * use proper data structures (e.g. Map, Set instead of {}, [])

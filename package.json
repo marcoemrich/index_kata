@@ -23,6 +23,7 @@
     "unexpected": "^10.32.1"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "ramda": "^0.24.1"
   }
 }
