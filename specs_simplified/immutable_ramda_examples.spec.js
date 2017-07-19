@@ -1,5 +1,5 @@
 const expect = require('unexpected');
-const I = require('./ramda-immutable-wrapper');
+const I = require('../ramda-immutable-wrapper');
 const { Map } = require('immutable');
 
 describe("Immutable (integrated with Ramda)", () => {

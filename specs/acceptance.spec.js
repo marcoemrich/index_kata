@@ -1,5 +1,5 @@
 const expect = require('unexpected');
-const linkTextFor = require('./index.js').linkTextFor;
+const linkTextFor = require('../index.js').linkTextFor;
 
 const runFirstPass = exampleRefs =>
   exampleRefs.forEach(ref => linkTextFor(ref.href, ref.pageNum));
