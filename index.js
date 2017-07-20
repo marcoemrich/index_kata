@@ -1,6 +1,8 @@
-R = require("ramda");
+const R = require("ramda");
 
+const _linkTextFrom = ({ href, page }, callHistory) => page + " ";
+
+// eslint-disable-next-line
 module.exports = {
-  linkTextFor: (href, page) => page + " "
-
+  pageReferenceText: (href, page) => page + " ",
 }

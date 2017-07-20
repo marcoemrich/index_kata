@@ -1,29 +1,29 @@
 const expect = require('unexpected');
-const linkTextFor = require('../index.js').linkTextFor;
+const pageReferenceText = require('../index.js').pageReferenceText;
 
 const runFirstPass = exampleRefs =>
-  exampleRefs.forEach(ref => linkTextFor(ref.href, ref.pageNum));
+  exampleRefs.forEach(ref => pageReferenceText(ref.href, ref.pageNum));
 
 const runExpects = exampleRefs => {
   exampleRefs.forEach(ref => {
     expect(
-      linkTextFor(ref.href, ref.pageNum),
+      pageReferenceText(ref.href, ref.pageNum),
       'to equal', ref.result
     );
   });
 }
 
-describe("linkTextFor", function () {
+describe("pageReferenceText", function () {
   it("should return the correct link texts as page padded right by space", function () {
-    // first pass: linkTextFor("#index_oop_1", "26") -> doesn't matter
-    // 2nd+ pass:  linkTextFor("#index_oop_1", "26") -> "26 "
+    // first pass: pageReferenceText("#index_fp_1", "26") -> doesn't matter
+    // 2nd+ pass:  pageReferenceText("#index_fp_1", "26") -> "26 "
 
-    // oop 26 27 28 29
+    // fp 26 27 28 29
     const exampleRefs = [
-      { href: "#index_oop_1", pageNum: "26", result: "26 " },
-      { href: "#index_oop_2", pageNum: "27", result: "27 " },
-      { href: "#index_oop_3", pageNum: "28", result: "28 " },
-      { href: "#index_oop_4", pageNum: "29", result: "29 " }
+      { href: "#index_fp^_1", pageNum: "26", result: "26 " },
+      { href: "#index_fp_2", pageNum: "27", result: "27 " },
+      { href: "#index_fp_3", pageNum: "28", result: "28 " },
+      { href: "#index_fp_4", pageNum: "29", result: "29 " }
     ];
 
     runFirstPass(exampleRefs)
@@ -31,12 +31,12 @@ describe("linkTextFor", function () {
   });
 
   xit("should not repeat page numbers", function () {
-    // oop 26 27 29
+    // fp 26 27 29
     const exampleRefs = [
-      { href: "#index_oop_1", pageNum: "26", result: "26 " },
-      { href: "#index_oop_2", pageNum: "27", result: "27 " },
-      { href: "#index_oop_3", pageNum: "27", result: "" },
-      { href: "#index_oop_4", pageNum: "29", result: "29 " }
+      { href: "#index_fp_1", pageNum: "26", result: "26 " },
+      { href: "#index_fp_2", pageNum: "27", result: "27 " },
+      { href: "#index_fp_3", pageNum: "27", result: "" },
+      { href: "#index_fp_4", pageNum: "29", result: "29 " }
     ];
 
     runFirstPass(exampleRefs)

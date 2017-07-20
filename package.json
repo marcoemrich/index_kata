@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha specs_simplified/*.spec.js --watch",
+    "test": "./node_modules/.bin/mocha specs_simple/*.spec.js --watch",
     "lint": "./node_modules/.bin/eslint *.js"
   },
   "repository": {

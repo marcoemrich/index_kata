@@ -1,24 +1,24 @@
 const expect = require('unexpected');
-const linkTextFor = require('../index.js').linkTextFor;
+const pageReferenceText = require('../index.js').pageReferenceText;
 
 const runFirstPass = exampleRefs =>
-  exampleRefs.forEach(ref => linkTextFor(ref.ref, ref.pageNum));
+  exampleRefs.forEach(ref => pageReferenceText(ref.ref, ref.pageNum));
 
 const runExpects = exampleRefs => {
   exampleRefs.forEach(ref => {
     expect(
-      linkTextFor(ref.ref, ref.pageNum),
+      pageReferenceText(ref.ref, ref.pageNum),
       'to equal', ref.result
     );
   });
 }
 
-describe("linkTextFor", function () {
+describe("pageReferenceText", function () {
   it("should return the correct link texts as page padded right by space", function () {
-    // first pass: linkTextFor("#index_oop_1", "26") -> doesn't matter
-    // 2nd+ pass:  linkTextFor("#index_oop_1", "26") -> "26 "
+    // first pass: pageReferenceText(1, 26) -> doesn't matter
+    // 2nd+ pass:  pageReferenceText(1, 26) -> "26 "
 
-    // oop 26 27 28 29
+    // 26 27 28 29
     const exampleRefs = [
       { ref: 1, pageNum: 26, result: "26 " },
       { ref: 2, pageNum: 27, result: "27 " },
@@ -31,7 +31,7 @@ describe("linkTextFor", function () {
   });
 
   xit("should not repeat page numbers", function () {
-    // oop 26 27 29
+    // 26 27 29
     const exampleRefs = [
       { ref: 1, pageNum: "26", result: "26 " },
       { ref: 2, pageNum: "27", result: "27 " },
@@ -44,14 +44,9 @@ describe("linkTextFor", function () {
   });
 
   xit("should provide consistent results on a third pass", function () {
-    // fp 11 12
-    // orm 12 14
     const exampleRefs = [
       { ref: 1, pageNum: "11", result: "11 " },
       { ref: 2, pageNum: "12", result: "12 " },
-
-      { ref: 3, pageNum: "12", result: "12 " },
-      { ref: 4, pageNum: "14", result: "14 " },
     ];
 
     runFirstPass(exampleRefs)
@@ -60,7 +55,7 @@ describe("linkTextFor", function () {
   });
 
   xit("should use page ranges", () => {
-    // foo 87-89
+    // 87-89
     // return a page range in the form <lowPage>-<highPage> 
     // for a several page references that have no page gaps between them 
     const exampleRefs = [
@@ -74,7 +69,7 @@ describe("linkTextFor", function () {
   });
 
   xit("should combine page ranges with other results", () => {
-    // foo 83 87-89 99
+    // 83 87-89 99
     const exampleRefs = [
       { ref: 1, pageNum: "83", result: "83 " },
       { ref: 2, pageNum: "87", result: "87-89 " },
