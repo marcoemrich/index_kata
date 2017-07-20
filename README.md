@@ -1,11 +1,13 @@
 # Index Kata
 
+![Index Example][index_example]
+
 ## About
 
 State is the devil. All programmers know it. However, getting rid of state is hard. This kata is designed to have various needs for keeping state. Can you get rid of it?
 
 ## Description
-Imagine to write the part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *fp* (short for functional programming). Your function will get called for every place this word is found in the book. The function receives two arguments.
+Imagine to write part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *fp* (short for functional programming). Your function will get called for every place this word is found in the book. The function receives two arguments.
 
 1. href - this is a reference for generating a link from the index to the words position. It's a string that consists of the term, a running reference number and some text padding.
 
@@ -78,3 +80,5 @@ There are libs you can try out:
   e.g. if you get *(#index_oop_1, 10) -> "10"*, than there is no  *(#index_oop_1, 10) -> p* with *p != 10* in a later pass
 * You ARE allowed to modify the acceptance spec as long as the business logic stays intact.
   Actually this might even be required in order to deal with global state in the specs.
+
+[index_example]: ./img/index.png
