@@ -44,8 +44,70 @@ pageReferenceText(1, 27) -> "27 "
 ## Rules
 
 * There can be several links to the same page, even for the same term. 
-* Luckily you always get at least two passes of information about the same term. In the first pass. Your function does't need to return anything. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
+* Luckily you always get at least two passes of information about the same term. In the first pass. Your function doesn't need to return anything. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
 * Whatever you return from your function after the first pass will be used as the index/page reference text (ie. a page number or page range).
+
+## Acceptance/HighLevel Specs
+
+Results of each call are denoted after the Arrow "->"
+
+* Return the correct link text as page number padded right by space (e.g. "fp: 27 37") 
+```
+// First Pass
+pageReferenceText(1, 27) -> Result doesn't matter at first pass
+pageReferenceText(1, 37) -> Result doesn't matter at first pass
+
+// 2nd Pass
+pageReferenceText(1, 27) -> "27 "
+pageReferenceText(1, 37) -> "37 "
+```
+
+* Don't repeat page numbers (e.g. "fp: 27 46 56") 
+```
+// First Pass
+pageReferenceText(1, 27) -> Result doesn't matter at first pass
+pageReferenceText(1, 46) -> Result doesn't matter at first pass
+pageReferenceText(1, 46) -> Result doesn't matter at first pass
+pageReferenceText(1, 56) -> Result doesn't matter at first pass
+
+// 2nd Pass
+pageReferenceText(1, 27) -> "27 "
+pageReferenceText(1, 46) -> "46 "
+pageReferenceText(1, 46) -> " "
+pageReferenceText(1, 56) -> "56 "
+```
+
+* Use page ranges (e.g. "fp: 87-89") 
+```
+// First Pass
+pageReferenceText(1, 87) -> Result doesn't matter at first pass
+pageReferenceText(1, 88) -> Result doesn't matter at first pass
+pageReferenceText(1, 89) -> Result doesn't matter at first pass
+
+// 2nd Pass
+pageReferenceText(1, 87) -> "87-89 "
+pageReferenceText(1, 88) -> ""
+pageReferenceText(1, 89) -> ""
+
+```
+
+* Combine page ranges with other results  (e.g. "fp: 83 87-89 99") 
+```
+// First Pass
+pageReferenceText(1, 83) -> Result doesn't matter at first pass
+pageReferenceText(1, 87) -> Result doesn't matter at first pass
+pageReferenceText(1, 88) -> Result doesn't matter at first pass
+pageReferenceText(1, 89) -> Result doesn't matter at first pass
+pageReferenceText(1, 99) -> Result doesn't matter at first pass
+
+// 2nd Pass
+pageReferenceText(1, 83) -> "83 "
+pageReferenceText(1, 87) -> "87-89 "
+pageReferenceText(1, 88) -> ""
+pageReferenceText(1, 89) -> ""
+pageReferenceText(1, 83) -> "99 "
+
+```
 
 ## Getting Started
 
@@ -56,13 +118,7 @@ npm test
 
 The first acceptance spec is already green. Remove the x from next xit in "specs_simple/index.spec.js", to get the next pending spec red. Implement the correct behaviour to get it green again. Rinse and repeat. Try to avoid (mutable) state at all costs.
 
-## Specs
 
-See specs_simple/index.spec.js
-
-Run the specs with: *npm test*
-
-You will need to edit the package.json, if you want to switch from the simple to the complete version of the kata.
 
 ## Avoid/Contain/Encapsulate/Immutalize/Freeze and Banish the State
 
