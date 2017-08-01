@@ -46,6 +46,11 @@ pageReferenceText(1, 27) -> "27 "
 * There can be several links to the same page, even for the same term. 
 * Luckily you always get at least two passes of information about the same term. In the first pass. Your function doesn't need to return anything. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
 * Whatever you return from your function after the first pass will be used as the index/page reference text (ie. a page number or page range).
+* You can also safely assume, that all passes yield the same page results, 
+  e.g. if you get *pageReferenceText(1, 10) -> "10"*, than there is no  *pageReferenceText(1, 10) -> p* with *p != 10* in a later pass
+* The page numbers never decrease in subsequent calls.
+* Assume the inputs as valid. Error-handling is not part of the kata.
+
 
 ## Acceptance/HighLevel Specs
 
@@ -109,48 +114,5 @@ pageReferenceText(1, 83) -> "99 "
 
 ```
 
-## Getting Started
-
-```bash
-npm install
-npm test
-```
-
-The first acceptance spec is already green. Remove the x from next xit in "specs_simple/index.spec.js", to get the next pending spec red. Implement the correct behaviour to get it green again. Rinse and repeat. Try to avoid (mutable) state at all costs.
-
-
-
-## Avoid/Contain/Encapsulate/Immutalize/Freeze and Banish the State
-
-* avoid let, use const
-* use immutable data
- 1. just dont change them
- 2. use freeze
- 3. use an immutable library
-* minimize side effects
-* minimize scope (localize state!)
-* contain state, ie. keep the core pure (use pure functions only)
-* use state wrapping, ie. world-state as an in-param and an additional return value
-* maybe use a Monad, or an Observable, or ...
-* other ideas?
-
-## Assisting Libraries
-
-There are libs you can try out:
-
-* Immuteable http://facebook.github.io/immutable-js/
-  Provides immuteable data types
-  
-* Ramda http://ramdajs.com/
-  A functional library which features non-mutating, side effect free functions
-
-## Other Considerations
-
-* Use proper data structures (e.g. Map, Set instead of {}, []).
-* Assume the inputs as valid. Error-handling is not part of the kata.
-* You can also safely assume, that all passes yield the same page results, 
-  e.g. if you get *pageReferenceText(1, 10) -> "10"*, than there is no  *pageReferenceText(1, 10) -> p* with *p != 10* in a later pass
-* You ARE allowed to modify the acceptance spec as long as the business logic stays intact.
-  Actually this might even be required in order to deal with global state in the specs.
 
 [index_example]: ./img/index.png
