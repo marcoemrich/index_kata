@@ -114,5 +114,11 @@ pageReferenceText(1, 83) -> "99 "
 
 ```
 
+## Programming Language
+
+The Kata orginated at #JSCC17 (see http://jscraftcamp.org). I also pulled it from a real project I'm doing at https:://owl.institute. There it has a JavaScript background and there is also a quick start with some setup and the specs in the folder *"specs_and_quick_start"* to get started fast. 
+
+It is however not dependent on JavaScript at all. **If someone would like to provide different language quick starts: Pull Requests are very welcome! :)**
+
 
 [index_example]: ./img/index.png
