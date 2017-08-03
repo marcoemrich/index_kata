@@ -78,7 +78,7 @@ pageReferenceText(4, 56) -> Result doesn't matter at first pass
 // 2nd Pass
 pageReferenceText(1, 27) -> "27 "
 pageReferenceText(2, 46) -> "46 "
-pageReferenceText(3, 46) -> " "
+pageReferenceText(3, 46) -> ""
 pageReferenceText(4, 56) -> "56 "
 ```
 
