@@ -71,28 +71,28 @@ pageReferenceText(1, 37) -> "37 "
 ```
 // First Pass
 pageReferenceText(1, 27) -> Result doesn't matter at first pass
-pageReferenceText(1, 46) -> Result doesn't matter at first pass
-pageReferenceText(1, 46) -> Result doesn't matter at first pass
-pageReferenceText(1, 56) -> Result doesn't matter at first pass
+pageReferenceText(2, 46) -> Result doesn't matter at first pass
+pageReferenceText(3, 46) -> Result doesn't matter at first pass
+pageReferenceText(4, 56) -> Result doesn't matter at first pass
 
 // 2nd Pass
 pageReferenceText(1, 27) -> "27 "
-pageReferenceText(1, 46) -> "46 "
-pageReferenceText(1, 46) -> " "
-pageReferenceText(1, 56) -> "56 "
+pageReferenceText(2, 46) -> "46 "
+pageReferenceText(3, 46) -> " "
+pageReferenceText(4, 56) -> "56 "
 ```
 
 * Use page ranges (e.g. "fp: 87-89") 
 ```
 // First Pass
 pageReferenceText(1, 87) -> Result doesn't matter at first pass
-pageReferenceText(1, 88) -> Result doesn't matter at first pass
-pageReferenceText(1, 89) -> Result doesn't matter at first pass
+pageReferenceText(2, 88) -> Result doesn't matter at first pass
+pageReferenceText(3, 89) -> Result doesn't matter at first pass
 
 // 2nd Pass
 pageReferenceText(1, 87) -> "87-89 "
-pageReferenceText(1, 88) -> ""
-pageReferenceText(1, 89) -> ""
+pageReferenceText(2, 88) -> ""
+pageReferenceText(3, 89) -> ""
 
 ```
 
@@ -100,17 +100,17 @@ pageReferenceText(1, 89) -> ""
 ```
 // First Pass
 pageReferenceText(1, 83) -> Result doesn't matter at first pass
-pageReferenceText(1, 87) -> Result doesn't matter at first pass
-pageReferenceText(1, 88) -> Result doesn't matter at first pass
-pageReferenceText(1, 89) -> Result doesn't matter at first pass
-pageReferenceText(1, 99) -> Result doesn't matter at first pass
+pageReferenceText(2, 87) -> Result doesn't matter at first pass
+pageReferenceText(3, 88) -> Result doesn't matter at first pass
+pageReferenceText(4, 89) -> Result doesn't matter at first pass
+pageReferenceText(5, 99) -> Result doesn't matter at first pass
 
 // 2nd Pass
 pageReferenceText(1, 83) -> "83 "
-pageReferenceText(1, 87) -> "87-89 "
-pageReferenceText(1, 88) -> ""
-pageReferenceText(1, 89) -> ""
-pageReferenceText(1, 83) -> "99 "
+pageReferenceText(2, 87) -> "87-89 "
+pageReferenceText(3, 88) -> ""
+pageReferenceText(4, 89) -> ""
+pageReferenceText(5, 83) -> "99 "
 
 ```
 
