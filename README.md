@@ -172,7 +172,7 @@ pageReferenceText(99) -> "99 "
 
 ## How to use the Kata
 
-You can use the kata as a playground for any idea of state handling you might have. That said, I have a suggestion for a particular pattern, which I think is a good fit and also fun to try out: The *History Recording Pattern*. It's a bit inspired by *event sourcing* or the way *monads* work in functional programming languages. 
+You can use the kata as a playground for any idea of state handling you might have. That said, I have a suggestion for a particular pattern, which I think is a good fit and also fun to try out: The **History Recording Pattern**. It's a bit inspired by *event sourcing* or the way *monads* work in functional programming languages.
 
 Instead of mixing the logic with the mutation of state, you separate it completely. The first thing, you do in the call is to record the call (the page number argument). Later you can derrive your results from recorded history by applying only pure functions. You don't want to mix logic with state recording.
 
