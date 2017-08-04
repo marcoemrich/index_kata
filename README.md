@@ -230,8 +230,8 @@ One interesting way to do the kata is to start with standard mutation based solu
 If you have very limited time, drop the requirement for different terms, use page numbers only.
 
 
-## History
+## History & Background
 
-I derrived the kata from a real life coding problem (we generate books at https://owl.institute) and simplified the problem for the kata (like a lot). And yes! The API of the book production is really thaaaat bad and also closed source :). 
+The kata is a simplified version of a real life coding problem (we generate books at https://owl.institute). And yes! The API of the book production system is really thaaaat bad (the real one is even worse) and also closed source. There wasn't a lot, we could do.
 
 [index_example]: ./img/index.png
