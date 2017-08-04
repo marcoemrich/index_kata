@@ -25,7 +25,7 @@ pageReferenceText("cat", 28)
 pageReferenceText("cat", 29)
 ```
 
-Strangly enough, you production system does several passes, so you will get the same calls at least twice.
+Strangely enough, you production system does several passes, so you will get the same calls at least twice.
 
 ```
 // First pass
