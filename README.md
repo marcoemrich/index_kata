@@ -7,35 +7,38 @@
 State is the devil. All programmers know it. However, getting rid of state is hard. This kata is designed to have various needs for keeping state. You might not be able to banish it completely. Maybe there a way to contain the state or make it easier to deal with?
 
 ## Description
-Imagine to write part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *fp* (short for functional programming). Your function will get called for every place this word is found in the book. 
+Imagine to write part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *fill*. Your function will get called for every place the word "cat" is found in the book. 
 
-We will simplify this a bit just for the kata. Let's drop the handling for different terms. So your function receives only one argument: the *page number* where the term was found.
+So your function receives two arguments: 
+
+1. the term
+2. the *page number* where the term was found.
 
 #### Example
 
-Let's say the term was found *two* times on *page 27*, and also on *page 28* and *page 29*. You will receive the following calls.
+Let's say the term *cat* was found **two** times on **page 27**, and also on **page 28** and **page 29**. You will receive the following calls.
 
 ```
-pageReferenceText(27)
-pageReferenceText(27)
-pageReferenceText(28)
-pageReferenceText(29)
+pageReferenceText("cat", 27)
+pageReferenceText("cat", 27)
+pageReferenceText("cat", 28)
+pageReferenceText("cat", 29)
 ```
 
 Strangly enough, you production system does several passes, so you will get the same calls at least twice.
 
 ```
 // First pass
-pageReferenceText(27)
-pageReferenceText(27)
-pageReferenceText(28)
-pageReferenceText(29)
+pageReferenceText("cat", 27)
+pageReferenceText("cat", 27)
+pageReferenceText("cat", 28)
+pageReferenceText("cat", 29)
 
 // Second pass
-pageReferenceText(27)
-pageReferenceText(27)
-pageReferenceText(28)
-pageReferenceText(29)
+pageReferenceText("cat", 27)
+pageReferenceText("cat", 27)
+pageReferenceText("cat", 28)
+pageReferenceText("cat", 29)
 
 // there could be more passes
 
@@ -46,7 +49,7 @@ Your goal is to implement the function *pageReferenceText*. It should return a p
 
 #### Example
 ```
-pageReferenceText(1, 27) -> "27 "
+pageReferenceText("cat", 27) -> "27 "
 ```
 
 Later you will need to generate *page ranges* like *27-29* and get rid of multiple links to the same page. Take a look at the specs for the details.
@@ -54,11 +57,11 @@ Later you will need to generate *page ranges* like *27-29* and get rid of multip
 
 ## Rules
 
-* There can be several links to the same page, even for the same term. 
+* There can be several links to the same page, even for the same term.
 * You'll always get at least two passes of information. In the first pass. Your function doesn't need to return anything. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
 * Whatever you return from your function after the first pass will be used as the index/page reference text by the book production system (ie. a page number or page range).
 * You can also safely assume, that all passes have exactly the same order and data.
-* During a pass, the page numbers never decrease in subsequent calls.
+* During a pass for a term, the page numbers never decrease in subsequent calls.
 * Assume the inputs as valid. Error-handling is not part of the kata.
 
 
@@ -69,79 +72,97 @@ Later you will need to generate *page ranges* like *27-29* and get rid of multip
 * Return the correct link text as page number padded right by space (e.g. "fp: 27 37") 
 ```
 // First Pass
-pageReferenceText(27) -> Result doesn't matter at first pass
-pageReferenceText(37) -> Result doesn't matter at first pass
+pageReferenceText("cat", 27) -> Result doesn't matter at first pass
+pageReferenceText("cat", 37) -> Result doesn't matter at first pass
 
 // 2nd Pass
-pageReferenceText(27) -> "27 "
-pageReferenceText(37) -> "37 "
+pageReferenceText("cat", 27) -> "27 "
+pageReferenceText("cat", 37) -> "37 "
 ```
 
 * Don't repeat page numbers (e.g. "fp: 27 46 56") 
 ```
 // First Pass
-pageReferenceText(27) -> Result doesn't matter at first pass
-pageReferenceText(46) -> Result doesn't matter at first pass
-pageReferenceText(46) -> Result doesn't matter at first pass
-pageReferenceText(56) -> Result doesn't matter at first pass
+pageReferenceText("cat", 27) -> Result doesn't matter at first pass
+pageReferenceText("cat", 46) -> Result doesn't matter at first pass
+pageReferenceText("cat", 46) -> Result doesn't matter at first pass
+pageReferenceText("cat", 56) -> Result doesn't matter at first pass
 
 // 2nd Pass
-pageReferenceText(27) -> "27 "
-pageReferenceText(46) -> "46 "
-pageReferenceText(46) -> ""
-pageReferenceText(56) -> "56 "
+pageReferenceText("cat", 27) -> "27 "
+pageReferenceText("cat", 46) -> "46 "
+pageReferenceText("cat", 46) -> ""
+pageReferenceText("cat", 56) -> "56 "
 ```
 
 * Use page ranges (e.g. "fp: 87-89") 
 ```
 // First Pass
-pageReferenceText(87) -> Result doesn't matter at first pass
-pageReferenceText(88) -> Result doesn't matter at first pass
-pageReferenceText(89) -> Result doesn't matter at first pass
+pageReferenceText("cat", 87) -> Result doesn't matter at first pass
+pageReferenceText("cat", 88) -> Result doesn't matter at first pass
+pageReferenceText("cat", 89) -> Result doesn't matter at first pass
 
 // 2nd Pass
-pageReferenceText(87) -> "87-89 "
-pageReferenceText(88) -> ""
-pageReferenceText(89) -> ""
+pageReferenceText("cat", 87) -> "87-89 "
+pageReferenceText("cat", 88) -> ""
+pageReferenceText("cat", 89) -> ""
 
 ```
+
+* Separate Data for different terms
+
+// First Pass
+pageReferenceText("cat", 87) -> Result doesn't matter at first pass
+pageReferenceText("cat", 88) -> Result doesn't matter at first pass
+
+pageReferenceText("dog", 27) -> Result doesn't matter at first pass
+pageReferenceText("dog", 28) -> Result doesn't matter at first pass
+
+// 2nd Pass
+pageReferenceText("cat", 87) -> "87-88 "
+pageReferenceText("cat", 88) -> ""
+
+pageReferenceText("dog", 27) -> "27-28 "
+pageReferenceText("dog", 28) -> ""
+
+
+## Acceptance/HighLevel Specs for Special/Edge Cases
 
 * Combine page ranges with other results  (e.g. "fp: 83 87-89 99") 
 ```
 // First Pass
-pageReferenceText(83) -> Result doesn't matter at first pass
-pageReferenceText(87) -> Result doesn't matter at first pass
-pageReferenceText(88) -> Result doesn't matter at first pass
-pageReferenceText(89) -> Result doesn't matter at first pass
-pageReferenceText(99) -> Result doesn't matter at first pass
+pageReferenceText("cat", 83) -> Result doesn't matter at first pass
+pageReferenceText("cat", 87) -> Result doesn't matter at first pass
+pageReferenceText("cat", 88) -> Result doesn't matter at first pass
+pageReferenceText("cat", 89) -> Result doesn't matter at first pass
+pageReferenceText("cat", 99) -> Result doesn't matter at first pass
 
 // 2nd Pass
-pageReferenceText(83) -> "83 "
-pageReferenceText(87) -> "87-89 "
-pageReferenceText(88) -> ""
-pageReferenceText(89) -> ""
-pageReferenceText(99) -> "99 "
+pageReferenceText("cat", 83) -> "83 "
+pageReferenceText("cat", 87) -> "87-89 "
+pageReferenceText("cat", 88) -> ""
+pageReferenceText("cat", 89) -> ""
+pageReferenceText("cat", 99) -> "99 "
 
 ```
 
-## Acceptance/HighLevel Specs for Special/Edge Cases
 
 * Page Ranges with multiple Upper Border Page Number
 
 ```
 // First Pass
-pageReferenceText(87) -> Result doesn't matter at first pass
-pageReferenceText(88) -> Result doesn't matter at first pass
-pageReferenceText(89) -> Result doesn't matter at first pass
-pageReferenceText(89) -> Result doesn't matter at first pass
-pageReferenceText(91) -> Result doesn't matter at first pass
+pageReferenceText("cat", 87) -> Result doesn't matter at first pass
+pageReferenceText("cat", 88) -> Result doesn't matter at first pass
+pageReferenceText("cat", 89) -> Result doesn't matter at first pass
+pageReferenceText("cat", 89) -> Result doesn't matter at first pass
+pageReferenceText("cat", 91) -> Result doesn't matter at first pass
 
 // 2nd Pass
-pageReferenceText(87) -> "87-89 "
-pageReferenceText(88) -> ""
-pageReferenceText(89) -> ""
-pageReferenceText(89) -> ""
-pageReferenceText(91) -> "91 "
+pageReferenceText("cat", 87) -> "87-89 "
+pageReferenceText("cat", 88) -> ""
+pageReferenceText("cat", 89) -> ""
+pageReferenceText("cat", 89) -> ""
+pageReferenceText("cat", 91) -> "91 "
 
 ```
 
@@ -149,36 +170,39 @@ pageReferenceText(91) -> "91 "
 
 ```
 // First Pass
-pageReferenceText(83) -> Result doesn't matter at first pass
-pageReferenceText(87) -> Result doesn't matter at first pass
-pageReferenceText(88) -> Result doesn't matter at first pass
-pageReferenceText(89) -> Result doesn't matter at first pass
-pageReferenceText(99) -> Result doesn't matter at first pass
+pageReferenceText("cat", 83) -> Result doesn't matter at first pass
+pageReferenceText("cat", 87) -> Result doesn't matter at first pass
+pageReferenceText("cat", 88) -> Result doesn't matter at first pass
+pageReferenceText("cat", 89) -> Result doesn't matter at first pass
+pageReferenceText("cat", 99) -> Result doesn't matter at first pass
 
 // 2nd Pass
-pageReferenceText(83) -> "83 "
-pageReferenceText(87) -> "87-89 "
-pageReferenceText(88) -> ""
-pageReferenceText(89) -> ""
-pageReferenceText(99) -> "99 "
+pageReferenceText("cat", 83) -> "83 "
+pageReferenceText("cat", 87) -> "87-89 "
+pageReferenceText("cat", 88) -> ""
+pageReferenceText("cat", 89) -> ""
+pageReferenceText("cat", 99) -> "99 "
 
 // 3rd Pass
-pageReferenceText(83) -> "83 "
-pageReferenceText(87) -> "87-89 "
-pageReferenceText(88) -> ""
-pageReferenceText(89) -> ""
-pageReferenceText(99) -> "99 "
+pageReferenceText("cat", 83) -> "83 "
+pageReferenceText("cat", 87) -> "87-89 "
+pageReferenceText("cat", 88) -> ""
+pageReferenceText("cat", 89) -> ""
+pageReferenceText("cat", 99) -> "99 "
 ```
 
 ## How to use the Kata
 
-You can use the kata as a playground for any idea of state handling you might have. That said, I have a suggestion for a particular pattern, which I think is a good fit and also fun to try out: The **History Recording Pattern**. It's a bit inspired by *event sourcing* or the way *monads* work in functional programming languages.
+You can use the kata as a **playground for any idea of state handling** you might have. That said, I have a suggestion for a particular pattern, which I think is a good fit and also fun to try out: The **History Recording Pattern**. It's a bit inspired by *event sourcing* or the way *monads* work in functional programming languages.
 
-Instead of mixing the logic with the mutation of state, you separate it completely. The first thing, you do in the call is to record the call (the page number argument). Later you can derrive your results from recorded history by applying only pure functions. You don't want to mix logic with state recording.
+Instead of mixing the logic with the mutation of state, you separate it completely. The first thing, you do in the call is to record the call (the arguments). Later you can derrive your results from recorded history by applying only pure functions. You don't want to mix logic with state recording.
 
 There is also a lot of variance here for writing the logic. You can use recursion or work with higher-order-function like map, filter and reduce. An interesting constraint for the kata is: expression-only, no-loops, no-if.
 
 One interesting way to do the kata is to start with standard mutation based solution and contrast it, with a solution using the history recording pattern.
+
+If you have very limited time, drop the requirement for different terms, use page numbers only.
+
 
 ## History
 
