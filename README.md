@@ -170,6 +170,20 @@ pageReferenceText(89) -> ""
 pageReferenceText(99) -> "99 "
 ```
 
+## How to use the Kata
+
+You can use the kata as a playground for any idea of state handling you might have. That said, I have a suggestion for a particular pattern, which I think is a good fit and also fun to try out: The *History Recording Pattern*. It's a bit inspired by *event sourcing* or the way *monads* work in functional programming languages. 
+
+Instead of mixing the logic with the mutation of state, you separate it completely. The first thing, you do in the call is to record the call (the page number argument). Later you can derrive your results from recorded history by applying only pure functions. You don't want to mix logic with state recording.
+
+There is also a lot of variance here for writing the logic. You can use recursion or work with higher-order-function like map, filter and reduce. An interesting constraint for the kata is: expression-only, no-loops, no-if.
+
+One interesting way to do the kata is to start with standard mutation based solution and contrast it, with a solution using the history recording pattern.
+
+## History
+
+I derrived the kata from a real life coding problem I had and simplified the problem for the kata (like a lot). And yes! The API of the book production is really thaaaat bad and also closed source.
+
 ## Programming Language
 
 The Kata orginated at #JSCC17 (see http://jscraftcamp.org). I also pulled it from a real project I'm doing at https://owl.institute. Therefore it has a JavaScript background and there is also a quick start with some setup and the specs in the folder *"specs_and_quick_start"* to get started fast. 
