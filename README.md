@@ -145,7 +145,7 @@ pageReferenceText(91) -> "91 "
 
 ```
 
-* Results must be consistent for all passes
+* Results must be consistent for all passes after the first
 
 ```
 // First Pass
