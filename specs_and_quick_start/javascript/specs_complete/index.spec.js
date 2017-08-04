@@ -1,5 +1,5 @@
 const expect = require('unexpected');
-const pageReferenceText = require('../index.js').pageReferenceText;
+const pageReferenceText = require('../src/index.js').pageReferenceText;
 
 const runFirstPass = exampleRefs =>
   exampleRefs.forEach(ref => pageReferenceText(ref.href, ref.pageNum));
