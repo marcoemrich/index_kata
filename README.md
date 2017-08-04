@@ -232,13 +232,6 @@ If you have very limited time, drop the requirement for different terms, use pag
 
 ## History
 
-I derrived the kata from a real life coding problem I had and simplified the problem for the kata (like a lot). And yes! The API of the book production is really thaaaat bad and also closed source.
-
-## Programming Language
-
-The Kata orginated at #JSCC17 (see http://jscraftcamp.org). I also pulled it from a real project I'm doing at https://owl.institute. Therefore it has a JavaScript background and there is also a quick start with some setup and the specs in the folder *"specs_and_quick_start"* to get started fast. 
-
-It is however not dependent on JavaScript at all. **If someone would like to provide different language quick starts: Pull Requests are very welcome! :)**
-
+I derrived the kata from a real life coding problem (we generate books at https://owl.institute) and simplified the problem for the kata (like a lot). And yes! The API of the book production is really thaaaat bad and also closed source :). 
 
 [index_example]: ./img/index.png
