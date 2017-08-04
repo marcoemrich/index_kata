@@ -58,10 +58,10 @@ Later you will need to generate *page ranges* like *27-29* and get rid of multip
 ## Rules
 
 * There can be several links to the same page, even for the same term.
-* You'll always get at least two passes of information. In the first pass. Your function doesn't need to return anything. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
+* You'll always get at least two passes of information. In the first pass the returned result of your function doesn't matter. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
 * Whatever you return from your function after the first pass will be used as the index/page reference text by the book production system (ie. a page number or page range).
 * You can also safely assume, that all passes have exactly the same order and data.
-* During a pass for a term, the page numbers never decrease in subsequent calls.
+* During a pass, the page numbers never decrease in subsequent calls for the same term.
 * Assume the inputs as valid. Error-handling is not part of the kata.
 
 
@@ -109,7 +109,7 @@ pageReferenceText("cat", 89) -> ""
 
 ```
 
-* Separate Data for different terms
+* Handle multiple terms
 
 ```
 // First Pass
@@ -190,6 +190,31 @@ pageReferenceText("cat", 87) -> "87-89 "
 pageReferenceText("cat", 88) -> ""
 pageReferenceText("cat", 89) -> ""
 pageReferenceText("cat", 99) -> "99 "
+```
+
+* Results must be consistent for all passes after the first for multiple terms
+
+```
+// First Pass
+pageReferenceText("cat", 87) -> Result doesn't matter at first pass
+pageReferenceText("cat", 88) -> Result doesn't matter at first pass
+
+pageReferenceText("dog", 27) -> Result doesn't matter at first pass
+pageReferenceText("dog", 28) -> Result doesn't matter at first pass
+
+// 2nd Pass
+pageReferenceText("cat", 87) -> "87-88 "
+pageReferenceText("cat", 88) -> ""
+
+pageReferenceText("dog", 27) -> "27-28 "
+pageReferenceText("dog", 28) -> ""
+
+// 3rd Pass
+pageReferenceText("cat", 87) -> "87-88 "
+pageReferenceText("cat", 88) -> ""
+
+pageReferenceText("dog", 27) -> "27-28 "
+pageReferenceText("dog", 28) -> ""
 ```
 
 ## How to use the Kata
