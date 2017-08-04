@@ -232,6 +232,6 @@ If you have very limited time, drop the requirement for different terms, use pag
 
 ## History & Background
 
-The kata is a simplified version of a real life coding problem (we generate books at https://owl.institute). And yes! The API of the book production system is really thaaaat bad (the real one is even worse) and also closed source. There wasn't a lot, we could do.
+The kata is a simplified version of a real life coding problem (we generate books at https://owl.institute). And yes! The API of the book production system is really thaaaat bad (the real one is even worse) and also closed source. There was nothing we could do.
 
 [index_example]: ./img/index.png
