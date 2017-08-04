@@ -4,7 +4,7 @@
 
 ## About
 
-State is the devil. All programmers know it. However, getting rid of state is hard. This kata is designed to have various needs for keeping state. You might not be able to banish it completely, but is there a way to contain the state or make it easier to deal with?
+State is the devil. All programmers know it. However, getting rid of state is hard. This kata is designed to have various needs for keeping state. You might not be able to banish it completely. Maybe there a way to contain the state or make it easier to deal with?
 
 ## Description
 Imagine to write part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *fp* (short for functional programming). Your function will get called for every place this word is found in the book. 
