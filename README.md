@@ -7,12 +7,12 @@
 State is the devil. All programmers know it. However, getting rid of state is hard. This kata is designed to have various needs for keeping state. You might not be able to banish it completely. Maybe there a way to contain the state or make it easier to deal with?
 
 ## Description
-Imagine to write part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *fill*. Your function will get called for every place the word "cat" is found in the book. 
+Imagine to write part of a service that generates book indexes. There is a contract, that your function *pageReferenceText* gets called (by the book production system) everytime there is a reference found for a specific word. Let's say you want to index the term *cat*. Your function gets called for every place the word *"cat"* is found in the book. 
 
 So your function receives two arguments: 
 
-1. the term
-2. the *page number* where the term was found.
+1. the **term**
+2. the **page number** where the term was found.
 
 #### Example
 
@@ -57,13 +57,13 @@ Later you will need to generate *page ranges* like *27-29* and get rid of multip
 
 ## Rules
 
-* There can be several links to the same page, even for the same term.
+* There can be several references to the same page, even for the same term.
 * You'll always get at least two passes of information. In the first pass the returned result of your function doesn't matter. Beginning with the 2nd pass you need to output the result pages, padded with a space to the right (e.g. "26 ").
 * Whatever you return from your function after the first pass will be used as the index/page reference text by the book production system (ie. a page number or page range).
 * You can also safely assume, that all passes have exactly the same order and data.
 * During a pass, the page numbers never decrease in subsequent calls for the same term.
 * Assume the inputs as valid. Error-handling is not part of the kata.
-
+* The dreadfull special case, where only one term is found for the whole book and all occurances of it are on the same page NEVER happens. You can safely ignore it.
 
 ## Acceptance/HighLevel Specs
 
